@@ -4,13 +4,31 @@ import window from '@ohos.window';
 import formBindingData from '@ohos.app.form.formBindingData';
 import formProvider from '@ohos.app.form.formProvider';
 import formInfo from '@ohos.app.form.formInfo';
+import systemDateTime from '@ohos.systemDateTime';
 
 export default class EntryAbility extends UIAbility {
+  ToSec(timeStr:string){
+    const timeRegex = /^(\d{2}):(\d{2})$/;
+    const matches = timeRegex.exec(timeStr);
+    if (matches === null) {
+      return null;
+    }
+    let hours = parseInt(matches[1], 10);
+    let minutes = parseInt(matches[2], 10);
+    let full=0;
+    full=hours*3600+minutes+60
+    return full
+  }
+
+
   onCreate(want, launchParam) {
     globalThis.entryAbilityWant = want;
     globalThis.startstation="";
     globalThis.endstation="";
     globalThis.formId="0";
+    globalThis.formIdall=[];
+    globalThis.startIds=[];
+    globalThis.endIds=[];
   }
 
   onDestroy() {
@@ -47,18 +65,7 @@ export default class EntryAbility extends UIAbility {
     if (want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
       let curFormId = want.parameters[formInfo.FormParam.IDENTITY_KEY];
       globalThis.formId=curFormId;
-      let message = JSON.parse(want.parameters.params).detail;
-      console.info(`UpdateForm formId: ${curFormId}, message: ${message}`);
-      let formData = {
-        "StartStation":globalThis.startstation,
-        "EndStation":globalThis.endstation,// 和卡片布局中对应
-      };
-      let formMsg = formBindingData.createFormBindingData(formData)
-      formProvider.updateForm(curFormId, formMsg).then((data) => {
-        console.info('updateForm success.' + JSON.stringify(data));
-      }).catch((error) => {
-        console.error('updateForm failed:' + JSON.stringify(error));
-      })
+
     }
   }
 }
