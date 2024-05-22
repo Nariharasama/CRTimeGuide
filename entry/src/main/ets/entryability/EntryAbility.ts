@@ -29,6 +29,7 @@ export default class EntryAbility extends UIAbility {
     globalThis.formIdall=[];
     globalThis.startIds=[];
     globalThis.endIds=[];
+    globalThis.stations=[];
   }
 
   onDestroy() {

@@ -69,6 +69,8 @@ struct Widget2X2Card {
       .width("100%")
 
       Flex({direction:FlexDirection.Row}){
+        Rect({height:"90%",width:2}).fill(Color.Blue)
+        Rect({height:"90%",width:4}).fill(Color.Transparent)
         //down right
         Flex({direction:FlexDirection.Column}){
           //halfright

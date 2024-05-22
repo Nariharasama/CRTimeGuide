@@ -75,8 +75,11 @@ struct Widget2X4Card {
         .width("100%")
 
         Flex({direction:FlexDirection.Row}){
+          Rect({height:"90%",width:2}).fill(Color.Blue)
+          Rect({height:"90%",width:4}).fill(Color.Transparent)
           //down right
           Flex({direction:FlexDirection.Column}){
+
             //halfright
             Row(){
               Text(this.Train1Time+"发")
@@ -116,8 +119,11 @@ struct Widget2X4Card {
 
       Flex({direction:FlexDirection.Column,alignItems:ItemAlign.Center}){
         Flex({direction:FlexDirection.Row}){
+          Rect({height:"90%",width:2}).fill(Color.Blue)
+          Rect({height:"90%",width:4}).fill(Color.Transparent)
           //down right
           Flex({direction:FlexDirection.Column}){
+
             //halfright
             Row(){
               Text(this.Train2Time+"发")
@@ -153,6 +159,8 @@ struct Widget2X4Card {
         .height("50%")
 
         Flex({direction:FlexDirection.Row}){
+          Rect({height:"90%",width:2}).fill(Color.Blue)
+          Rect({height:"90%",width:4}).fill(Color.Transparent)
           //down right
           Flex({direction:FlexDirection.Column}){
             //halfright

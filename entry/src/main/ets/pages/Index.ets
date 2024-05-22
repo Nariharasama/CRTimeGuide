@@ -7,6 +7,8 @@ import formBindingData from '@ohos.app.form.formBindingData';
 struct Index {
   @State StartStation:string="Nan";
   @State EndStation:string="Nan";
+  @State stations:string[][]=globalThis.stations;
+  @State onchosecard:number=-1;
 
   ToSec(timeStr){
     const timeRegex = /^(\d{2}):(\d{2})$/;
@@ -260,10 +262,21 @@ struct Index {
           break;
         }
       }
-      globalThis.formIdall.push(globalThis.formId)
-      globalThis.startIds.push(startId)
-      globalThis.endIds.push(endId)
-      console.log("allID"+globalThis.formIdall)
+      if(globalThis.formIdall.indexOf(globalThis.formId)==-1){
+        globalThis.formIdall.push(globalThis.formId)
+        globalThis.startIds.push(startId)
+        globalThis.endIds.push(endId)
+        globalThis.stations.push([startSC,endSC])
+        this.stations=globalThis.stations
+        console.log("allID"+globalThis.formIdall)
+      }
+      else{
+        globalThis.startIds[globalThis.formIdall.indexOf(globalThis.formId)]=startId
+        globalThis.endIds[globalThis.formIdall.indexOf(globalThis.formId)]=endId
+        globalThis.stations[globalThis.formIdall.indexOf(globalThis.formId)]=[startSC,endSC]
+        this.stations=globalThis.stations
+      }
+
       let date = new Date();
       let nowhour = date.getHours();
       let nowminutes = date.getMinutes();
@@ -523,12 +536,74 @@ struct Index {
             .width("100%")
             .height(40)
               .onClick(()=>{this.update();})
+
+            Text("已经设置的卡片")
+              .fontFamily("sans-serif")
+              .fontColor("#000000")
+              .fontSize(14)
+              .fontWeight(500)
+              .lineHeight(20)
+              .height(40)
+              .padding({top:20})
+
+            List(){
+              ForEach(this.stations,(item,key)=>{
+
+                ListItem(){
+                  Row(){
+                    Text("No."+(key+1))
+                      .fontColor("#000000")
+                      .fontFamily("sans-serif")
+                      .fontSize(12)
+                      .lineHeight(16)
+                      .fontWeight(400)
+                      .width(40)
+                      .margin(4)
+
+                    Text("始发:"+item[0])
+                      .fontColor("#000000")
+                      .fontFamily("sans-serif")
+                      .fontSize(12)
+                      .lineHeight(16)
+                      .fontWeight(400)
+                      .width(80)
+                      .margin(4)
+
+                    Text("终到:"+item[1])
+                      .fontColor("#000000")
+                      .fontFamily("sans-serif")
+                      .fontSize(12)
+                      .lineHeight(16)
+                      .fontWeight(400)
+                      .width(80)
+                      .margin(4)
+
+                    Blank()
+
+                    Button("选中")
+                      .backgroundColor("#535a92")
+                      .fontColor("ffffff")
+                      .width(72)
+                      .height(40)
+                      .onClick(()=>{globalThis.formId=globalThis.formIdall[key]})
+
+                  }.height("100%").width("100%")
+                }.width("100%").height(56)
+
+              })
+            }.width("100%").flexGrow(1).height(400)
+
+
+
           }
           .backgroundColor("#EFEDF4")
           .width("100%")
           .flexGrow(1)
           .borderRadius({topLeft:24,topRight:24})
           .padding({left:16,right:16})
+
+
+
         }
         .height("100%")
         .width("100%")
