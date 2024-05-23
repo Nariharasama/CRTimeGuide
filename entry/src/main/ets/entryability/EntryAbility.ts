@@ -30,6 +30,8 @@ export default class EntryAbility extends UIAbility {
     globalThis.startIds=[];
     globalThis.endIds=[];
     globalThis.stations=[];
+    globalThis.publishtime=60;
+    globalThis.publishon=[];
   }
 
   onDestroy() {
