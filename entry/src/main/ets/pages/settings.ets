@@ -5,6 +5,7 @@ import router from '@ohos.router';
 @Component
 struct Index {
   @State message: string = 'Hello World'
+  @State time: number = globalThis.publishtime
 
   build() {
     Flex({direction:FlexDirection.Column}) {
@@ -48,7 +49,31 @@ struct Index {
 
                 Toggle({ type: ToggleType.Switch, isOn: false })
                   .flexGrow(0)
-              }
+              }.width("100%").height(40)
+
+              Row(){
+                Text("通知时间/分钟")
+                  .fontFamily("sans-serif")
+                  .fontColor("#000000")
+                  .fontSize(10)
+                  .fontWeight(400)
+                  .lineHeight(20)
+                  .height(40)
+                  .width(80)
+
+                TextInput({text:globalThis.publishtime})
+                  .type(InputType.Number)
+                  .onChange((value)=>{
+                    this.time=parseInt(value)
+                  }).width(80)
+
+                Blank()
+
+                Button("确定修改")
+                  .onClick(()=>{globalThis.publishtime=this.time})
+                  .backgroundColor("#535a92")
+                  .fontColor("ffffff")
+              }.width("100%").height(40)
 
             }
 

@@ -598,7 +598,7 @@ struct Index {
                       .fontSize(12)
                       .lineHeight(16)
                       .fontWeight(400)
-                      .width(100)
+                      .width(80)
                       .margin(4)
 
                     Text("终到:"+item[1])
@@ -607,10 +607,19 @@ struct Index {
                       .fontSize(12)
                       .lineHeight(16)
                       .fontWeight(400)
-                      .width(100)
+                      .width(80)
                       .margin(4)
 
                     Blank()
+
+                    Text("通知")
+                      .fontColor("#000000")
+                      .fontFamily("sans-serif")
+                      .fontSize(12)
+                      .lineHeight(16)
+                      .fontWeight(400)
+                      .width(24)
+                      .margin(4)
 
                     Toggle({ type: ToggleType.Switch, isOn: false })
                       .flexGrow(0)
@@ -765,8 +774,10 @@ struct Index {
                     Button("修改")
                       .backgroundColor("#535a92")
                       .fontColor("ffffff")
-                      .width(64)
-                      .height(40)
+                      .width(54)
+                      .height(24)
+                      .fontSize(10)
+
                       .onClick(()=>{globalThis.formId=globalThis.formIdall[key]})
 
                   }.height("100%").width("100%")
