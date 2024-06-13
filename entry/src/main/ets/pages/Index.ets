@@ -462,13 +462,23 @@ struct Index {
               .fontColor("#000000")
               .fontSize(14)
               .fontWeight(500)
-              .lineHeight(20)
-              .height(40)
+              .height(44)
               .padding({top:20})
             //车站设置区
             Flex({direction:FlexDirection.Row}){
               //左侧车站输入
               Flex({direction:FlexDirection.Column}){
+                Select([{ value: '广深港城际', icon: "/pages/common/images/train.png" },
+                  { value: '京港澳高铁武广段（暂未开通）', icon: "/pages/common/images/train.png" },
+                  { value: '上海城市圈城际铁路（暂未开通）', icon: "/pages/common/images/train.png" },])
+                  .selected(0)
+                  .value('选择线路')
+                  .font({ size: 12, weight: 500 })
+                  .fontColor('#182431')
+                  .selectedOptionFont({ size: 12, weight: 400 })
+                  .optionFont({ size: 12, weight: 400 })
+                  .height(20)
+
                 //Start Title
                 Flex({alignItems:ItemAlign.Center}){
                   Image("/pages/common/images/starticon.svg")
@@ -556,7 +566,7 @@ struct Index {
 
             }
             .backgroundColor("#fbf8ff")
-            .height(200)
+            .height(240)
             .width("100%")
             .borderRadius(24)
             .margin({top:16})
@@ -575,7 +585,7 @@ struct Index {
               .fontSize(14)
               .fontWeight(500)
               .lineHeight(20)
-              .height(40)
+              .height(48)
               .padding({top:20})
 
             List(){
@@ -784,7 +794,8 @@ struct Index {
                 }.width("100%").height(56)
 
               })
-            }.width("100%").flexGrow(1).height(400)
+            }
+            .width("100%").flexGrow(1).height(400)
 
 
 
